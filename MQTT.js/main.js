@@ -9,8 +9,8 @@ function loadCreds() {
 
 creds = loadCreds()
 console.log('Utilizing the following MQTT credential: ', creds);
-const mqtt = require("mqtt");
 
+const mqtt = require("mqtt");
 client = mqtt.connect({
   host: creds.host,
   port: creds.port,
