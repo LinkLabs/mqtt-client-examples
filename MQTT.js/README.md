@@ -1,6 +1,6 @@
 # MQTT.js Client Implementation Example
 
-## Step 1. Get `creds.json`
+## [Step 1. Get `creds.json`](https://github.com/LinkLabs/mqtt-client-examples/blob/main/README.md#getting-mqtt-credentials)
 
 ## Step 2. Ensure NodeJS Enviornment
 
