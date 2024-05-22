@@ -23,19 +23,20 @@ client = mqtt.connect({
 });
 
 client.on("connect", () => {
-  client.subscribe(creds.topic, (err) => {
+  client.subscribe(creds.topic, {qos: 1}, (err, granted) => {
     if (err) {
       console.log("Error subscribing to topic: ", err);
       client.end()
     } else {
-      console.log("Subscribed to topic!");
+      console.log("Subscribed to topic", granted[0].topic, "using a QoS of", granted[0].qos,"!");
+      console.log()
     }
   });
 });
 
 client.on("message", (topic, message) => {
   // message is Buffer
-  console.log(message.toString());
+  console.log(topic, "->", message.toString());
 });
 
 client.on('error', function(err){
