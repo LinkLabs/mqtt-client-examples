@@ -36,7 +36,7 @@ client.on("connect", () => {
 
 client.on("message", (topic, message) => {
   // message is Buffer
-  console.log(topic, "->", message.toString());
+  console.log(topic, "->", JSON.parse(message.toString()));
 });
 
 client.on('error', function(err){
