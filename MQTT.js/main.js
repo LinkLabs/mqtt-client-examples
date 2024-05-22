@@ -1,14 +1,29 @@
+class MQTTCredentials {
+  clientId = "";
+  host = "";
+  organizationId = "";
+  password = "";
+  port = 8883;
+  protocol = "";
+  subscriptionDate = "";
+  topic = "";
+  userId = 0;
+  username = "";
+  isEnabled = 0;
+  subscriptionType = "";
+}
+
 const fs = require('node:fs');
 function loadCreds() {
   try {
-    return JSON.parse(fs.readFileSync('creds.json', 'utf8'));
+    return Object.assign(new MQTTCredentials, JSON.parse(fs.readFileSync('creds.json', 'utf8')))
   } catch (err) {
     console.error("Could not load `creds.json` file: ", err);
   }
 }
 
 creds = loadCreds()
-console.log('Utilizing the following MQTT credential: ', creds);
+console.log('Utilizing: ', creds);
 
 const mqtt = require("mqtt");
 client = mqtt.connect({
