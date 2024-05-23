@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "paho-mqtt-client-example"
+authors = ["thomas.steinholz@link-labs.com"]
+description = "MQTT Client Implementation Example"
+readme = "README.md"
+version = "1.0.0"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+paho-mqtt = "^2.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
