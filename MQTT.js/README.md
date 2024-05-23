@@ -1,6 +1,7 @@
 # MQTT.js Client Implementation Example
 
-https://github.com/mqttjs/MQTT.js
+* [Github Repo](https://github.com/mqttjs/MQTT.js)
+* [Full Documentation](https://www.npmjs.com/package/mqtt#api)
 
 ## [Step 1. Get `creds.json`](https://github.com/LinkLabs/mqtt-client-examples/blob/main/README.md#getting-mqtt-credentials)
 
