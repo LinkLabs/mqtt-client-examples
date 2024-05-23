@@ -21,3 +21,16 @@ To view the details of an MQTT Credentials, you can click the "..." icon and sel
 ![](https://github.com/LinkLabs/mqtt-client-examples/blob/main/docs/airfinder_platform_get_mqtt_credentials.png)
 
 Once you "Copy All Fields", you can place that into a `creds.json` file within the root of the MQTT Client Example project you want to run in order to set up and run that example project.
+
+## Via the Network Asset HTTP API
+
+The MQTT User Credential Swagger documentation can be found here: https://networkasset-conductor.link-labs.com/networkAsset/docs.html#!/airfinder-mqttuser-controller
+
+To utilize this API you must have an Organization level admin permission, the API accepts BasicAuth and OAuth2 (with client configuration). You must also know your Organization ID, which can be found with this endpoint: GET https://networkasset-conductor.link-labs.com/networkAsset/airfinder/organizations
+
+When you have the organization ID you can retrieve the MQTT Credentials with
+
+```
+➜  curl -X GET "https://networkasset-conductor.link-labs.com/networkAsset/airfinder/mqttUsers?organizationId=<organization id>" \
+        -H "Authorization: basic <Basic Auth>"
+```
