@@ -58,17 +58,20 @@ def on_disconnect(client, userdata, rc):
         client.on_log(userdata, "error", f"{rc}", f"Unexpected DISCONNECT: {mqtt.error_string(rc)}")
 
 
+# Create MQTT Client Instance
 mqttc = mqtt.Client(client_id=creds.clientId, protocol=mqtt.MQTTv5)
 mqttc.username_pw_set(username=creds.username, password=creds.password)
+mqttc.tls_set()
+
+# Register MQTT Callbacks
 mqttc.on_message = on_message
 mqttc.on_connect = on_connect
 mqttc.on_subscribe = on_subscribe
 mqttc.on_disconnect = on_disconnect
-
 # Comment to disable debug messages
 mqttc.on_log = on_log
 
-mqttc.tls_set()
+# Establish MQTT Connection and run application loop
 mqttc.connect(host=creds.host, port=int(creds.port), keepalive=60)
 ret = mqttc.subscribe(creds.topic, qos=1)
 mqttc.loop_forever()
