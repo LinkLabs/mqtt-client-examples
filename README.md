@@ -13,6 +13,18 @@ A repository of different programming languages and libraries providing examples
   - Utilize a `clean_session=False` when the desired behavior is to process the backlog of QoS 1 messages that were not received by the MQTT client implementation and are unacknowledged from the perspective of the Link Labs MQTT Broker.
   -  Utilize a `clean_session=True` when the desired behavior is to drop the unacknowledged and unreceived backlog messages from the Link Labs MQTT Broker and resume processing new near real time events only. 
 
+## Troubleshooting MQTT Connections
+
+* The Link Labs MQTT Broker only allows encrypted transport via the standard port 8883, specified in the MQTT User Credentials.
+  - The default unencrypted port 1883 is blocked and will result in a network timeout.
+  - This port requires TLS to be enabled on your MQTT client.
+   - We also recommend validating the certificate if it is an option in your MQTT client implementation.
+* Using invalid credentials: username, password, and client ID must all match what is provided by MQTT User Credentials.
+* The provided MQTT User Credentials only have access to the topic given in the MQTT User Credentials.
+* Some implementations attempt to subscribe to "#" or "$SYS/#", this will prevent a connection.
+  - The given topic is just a base topic so you can fine-tune the subscription beyond your base topic if desired.
+* A client is already subscribed to the MQTT Broker utilizing the same MQTT User Credentials (Client ID).
+
 ## Getting MQTT Credentials
 
 Once you have been registered in the Airfinder Platform with an Organization, you will need the admin level permissions to generate MQTT Crednetials.
