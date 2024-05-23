@@ -1,6 +1,17 @@
 # MQTT Client Examples
 
-A repository of different programming languages and libraries providing examples of MQTT implementations that integrate directly to the Link Labs MQTT Credentials Object and MQTT ecosystem.
+A repository of different programming languages and libraries providing examples of MQTT Client implementations that integrate directly to the Link Labs MQTT User Credentials Object and MQTT ecosystem.
+
+## MQTT Best Practices and Production Readiness
+
+* Use [MQTT v5 specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html).
+* Use TLS encryption and port 8883 (instead of the default, unencrypted port 1883).
+* Validate TLS Certificate from Certificate Authority (no key file is required).
+* Use one client id per process, sharing the same client id across multiple processes will [result in both processes disconnecting the other](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901073), preventing any messages from being processed by either process.
+* Use the MQTT Shared Subscription topic, which appends a "$share/<share group>" prefix before the MQTT topic string. This allows multiple MQTT client processes, with unique MQTT client ids to "share" the same subscription, which will balance the load of traffic between the MQTT client processes. This allows for failure tolerance in the case that a subscription service fails as well as no-downtime upgrades of services by doing a rolling update of the services.
+* Utilize QoS of 1 to ensure that MQTT events are received at least once (and can be possibly duplicated).
+  - Utilize a clean_session=False when the desired behavior is to process the backlog of QoS 1 messages that were not received by the MQTT client implementation and are unacknowledged from the perspective of the Link Labs MQTT Broker.
+  -  Utilize a clean_session=True when the desired behavior is to drop the unacknowledged and unreceived backlog messages from the Link Labs MQTT Broker and resume processing new near real time events only. 
 
 ## Getting MQTT Credentials
 
@@ -31,6 +42,6 @@ To utilize this API you must have an Organization level admin permission, the AP
 When you have the organization ID you can retrieve the MQTT Credentials with
 
 ```
-➜  curl -X GET "https://networkasset-conductor.link-labs.com/networkAsset/airfinder/mqttUsers?organizationId=<organization id>" \
-        -H "Authorization: basic <Basic Auth>"
+curl -X GET "https://networkasset-conductor.link-labs.com/networkAsset/airfinder/mqttUsers?organizationId=<organization id>" \
+    -H "Authorization: basic <Basic Auth>"
 ```
