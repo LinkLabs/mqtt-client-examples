@@ -26,13 +26,13 @@ poetry run python main.py
 
 ## Step 3.b Prepare Python Virtual Enviornment (Manually)
 
-Create a virutal enviornment:
+### Create a virutal enviornment:
 
 ```
 python -m venv /path/to/new/virtual/environment
 ```
 
-Activate virtual enviornment:
+### Activate virtual enviornment:
 
 | Platform | Shell | Command to activate virtual environment |
 | -------- | ----- | --------------------------------------- |
@@ -45,7 +45,8 @@ Activate virtual enviornment:
 
 More information: https://docs.python.org/3/library/venv.html
 
-Install MQTT Dependency
+### Install MQTT Dependency
+
 ```
 pip install paho-mqtt
 ```
