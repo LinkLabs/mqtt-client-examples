@@ -21,7 +21,7 @@ poetry install
 ## Step 4.a Run Demo Applicaiton (with Poetry)
 
 ```
-poetry run python main.js
+poetry run python main.py
 ```
 
 ## Step 3.b Prepare Python Virtual Enviornment (Manually)
