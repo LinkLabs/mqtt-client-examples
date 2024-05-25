@@ -33,6 +33,7 @@ Already using or planning to use an existing Geographic Information System, Ente
 - [ArcGIS Velocity](https://doc.arcgis.com/en/iot/ingest/mqtt.htm)
 - [AWS IoT](https://docs.aws.amazon.com/greengrass/v2/developerguide/mqtt-bridge-component.html)
 - [Azure IoT](https://learn.microsoft.com/en-us/azure/iot-operations/connect-to-cloud/howto-configure-mqtt-bridge)
+- [Salesforce/Mulesoft](https://docs.mulesoft.com/mqtt3-connector/latest/)
 - [Informatica](https://docs.informatica.com/integration-cloud/cloud-mass-ingestion/current-version/mass-ingestion-streaming/mass-ingestion-streaming/mass-ingestion-streaming-sources/mqtt-sources.html)
 - [ThingsBoard](https://thingsboard.io/docs/iot-gateway/config/mqtt/)
 - [Kafka Connect](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html)
