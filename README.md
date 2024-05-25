@@ -2,6 +2,8 @@
 
 A repository of different programming languages and libraries providing examples of MQTT Client implementations that integrate directly to the Link Labs MQTT User Credentials Object and MQTT ecosystem.
 
+For additional, more generic, MQTT client subscriptions, you can also view: [emqx/MQTT-Client-Examples](https://github.com/emqx/MQTT-Client-Examples)
+
 ## MQTT Best Practices and Production Readiness
 
 * Use [MQTT v5 specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html).
