@@ -29,17 +29,17 @@ For additional, more generic, MQTT client examples, you can also view: [emqx/MQT
 
 ## MQTT Enabled Platforms and Connectors
 
-Already using or planning to use an existing Geographic Information System, Enterprise Resource Planning, or IoT Platform? The following are some of many ready-to-configure MQTT integrations.
+Already using or planning to use an existing Geographic Information System, Enterprise Resource Planning, or IoT Platform? The following are some of many ready-to-configure MQTT integrations:
 
-- [SAP ABAP](https://help.sap.com/docs/ABAP_PLATFORM_NEW/05d041d3df1a4595a3c45f57c15e2325/e6dc0df73a62417eb8f09deb270bb34e.html)
 - [ArcGIS Velocity](https://doc.arcgis.com/en/iot/ingest/mqtt.htm)
 - [AWS IoT](https://docs.aws.amazon.com/greengrass/v2/developerguide/mqtt-bridge-component.html)
-- [Azure IoT](https://learn.microsoft.com/en-us/azure/iot-operations/connect-to-cloud/howto-configure-mqtt-bridge)
-- [Salesforce/Mulesoft](https://docs.mulesoft.com/mqtt3-connector/latest/)
+- [Azure IoT](https://learn.microsoft.com/en-us/azure/iot-operations/connect-to-cloud/howto-configure-mqtt-bridge)]
 - [Informatica](https://docs.informatica.com/integration-cloud/cloud-mass-ingestion/current-version/mass-ingestion-streaming/mass-ingestion-streaming/mass-ingestion-streaming-sources/mqtt-sources.html)
-- [ThingsBoard](https://thingsboard.io/docs/iot-gateway/config/mqtt/)
-- [Kafka Connect](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html)
+- [Kafka Connect](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html) 
 - [Open Automation Software](https://openautomationsoftware.com/products/communications/mqtt-connector/)
+- [Salesforce/Mulesoft](https://docs.mulesoft.com/mqtt3-connector/latest/)
+- [SAP ABAP](https://help.sap.com/docs/ABAP_PLATFORM_NEW/05d041d3df1a4595a3c45f57c15e2325/e6dc0df73a62417eb8f09deb270bb34e.html)
+- [ThingsBoard](https://thingsboard.io/docs/iot-gateway/config/mqtt/)
 
 ## Getting MQTT Credentials
 
