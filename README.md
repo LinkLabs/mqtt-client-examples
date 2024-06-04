@@ -35,11 +35,19 @@ Already using or planning to use an existing Geographic Information System, Ente
 - [AWS IoT](https://docs.aws.amazon.com/greengrass/v2/developerguide/mqtt-bridge-component.html)
 - [Azure IoT](https://learn.microsoft.com/en-us/azure/iot-operations/connect-to-cloud/howto-configure-mqtt-bridge)
 - [Informatica](https://docs.informatica.com/integration-cloud/cloud-mass-ingestion/current-version/mass-ingestion-streaming/mass-ingestion-streaming/mass-ingestion-streaming-sources/mqtt-sources.html)
-- [Kafka Connect](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html) 
+- [Lenses Kafka MQTT Source Connector](https://docs.lenses.io/5.5/connectors/sources/mqttsourceconnector/)
 - [Open Automation Software](https://openautomationsoftware.com/products/communications/mqtt-connector/)
 - [Salesforce/Mulesoft](https://docs.mulesoft.com/mqtt3-connector/latest/)
 - [SAP ABAP](https://help.sap.com/docs/ABAP_PLATFORM_NEW/05d041d3df1a4595a3c45f57c15e2325/e6dc0df73a62417eb8f09deb270bb34e.html)
 - [ThingsBoard](https://thingsboard.io/docs/iot-gateway/config/mqtt/)
+
+### Connectors with Known Issues
+
+#### [Kafka Connect]([https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-sink-connector/overview.html#connection-validation-and-client-ids)) 
+
+> The MQTT Sink connector validates connection using a randomly generated client ID. This validation method is fine in most cases, however, issues may arise if the MQTT broker rejects clients based on client IDs.
+
+The Link Labs MQTT Broker requires static client id configuration as a part of the client authentication. An open-source alternative would be [Lenses MQTT Source Connector](https://docs.lenses.io/5.5/connectors/sources/mqttsourceconnector/)
 
 ## Getting MQTT Credentials
 
