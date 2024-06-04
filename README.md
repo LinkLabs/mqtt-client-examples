@@ -43,11 +43,11 @@ Already using or planning to use an existing Geographic Information System, Ente
 
 ### Connectors with Known Issues
 
-#### [Kafka Connect]([https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-sink-connector/overview.html#connection-validation-and-client-ids)) 
+#### [Kafka Connect](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-source-connector/overview.html](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-sink-connector/overview.html#connection-validation-and-client-ids)
 
 > The MQTT Sink connector validates connection using a randomly generated client ID. This validation method is fine in most cases, however, issues may arise if the MQTT broker rejects clients based on client IDs.
 
-The Link Labs MQTT Broker requires static client id configuration as a part of the client authentication. An open-source alternative would be [Lenses MQTT Source Connector](https://docs.lenses.io/5.5/connectors/sources/mqttsourceconnector/)
+The Link Labs MQTT Broker requires static client id configuration as a part of the client authentication. An open-source alternative would be [Lenses Kafka MQTT Source Connector](https://docs.lenses.io/5.5/connectors/sources/mqttsourceconnector/)
 
 ## Getting MQTT Credentials
 
