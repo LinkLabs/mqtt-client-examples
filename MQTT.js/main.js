@@ -23,7 +23,7 @@ function loadCreds() {
 }
 
 creds = loadCreds()
-console.log('Utilizing: ', creds);
+console.log('Utilizing: MQTTCredentials', JSON.stringify(creds, null, 4));
 
 const mqtt = require("mqtt");
 client = mqtt.connect({
@@ -56,6 +56,11 @@ client.on("connect", () => {
     }
   });
 });
+
+client.on("disconnect", (packet) => {
+  console.debug(packet)
+  console.log("Disconnected!", mqtt.ReasonCodes[packet.reasonCode])
+})
 
 client.on("message", (topic, message) => {
   // message is Buffer
