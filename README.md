@@ -2,6 +2,8 @@
 
 A repository of different programming languages and libraries providing examples of MQTT Client implementations that integrate directly to the Link Labs MQTT User Credentials Object and MQTT ecosystem.
 
+For additional, more generic, MQTT client examples, you can also view: [emqx/MQTT-Client-Examples](https://github.com/emqx/MQTT-Client-Examples)
+
 ## MQTT Best Practices and Production Readiness
 
 * Use [MQTT v5 specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html).
@@ -12,6 +14,40 @@ A repository of different programming languages and libraries providing examples
 * Utilize QoS of 1 to ensure that MQTT events are received at least once (and can be possibly duplicated).
   - Utilize a `clean_session=False` when the desired behavior is to process the backlog of QoS 1 messages that were not received by the MQTT client implementation and are unacknowledged from the perspective of the Link Labs MQTT Broker.
   -  Utilize a `clean_session=True` when the desired behavior is to drop the unacknowledged and unreceived backlog messages from the Link Labs MQTT Broker and resume processing new near real time events only. 
+
+## Troubleshooting MQTT Connections
+
+* The Link Labs MQTT Broker only allows encrypted transport via the standard port 8883, specified in the MQTT User Credentials.
+  - The default unencrypted port 1883 is blocked and will result in a network timeout.
+  - This port requires TLS to be enabled on your MQTT client.
+   - We also recommend validating the certificate if it is an option in your MQTT client implementation.
+* Using invalid credentials: username, password, and client ID must all match what is provided by MQTT User Credentials.
+* The provided MQTT User Credentials only have access to the topic given in the MQTT User Credentials.
+* Some implementations attempt to subscribe to "#" or "$SYS/#", this will prevent a connection.
+  - The given topic is just a base topic so you can fine-tune the subscription beyond your base topic if desired.
+* A client is already subscribed to the MQTT Broker utilizing the same MQTT User Credentials (Client ID).
+
+## MQTT Enabled Platforms and Connectors
+
+Already using or planning to use an existing Geographic Information System, Enterprise Resource Planning, or IoT Platform? The following are some of many ready-to-configure MQTT integrations:
+
+- [ArcGIS Velocity](https://doc.arcgis.com/en/iot/ingest/mqtt.htm)
+- [AWS IoT](https://docs.aws.amazon.com/greengrass/v2/developerguide/mqtt-bridge-component.html)
+- [Azure IoT](https://learn.microsoft.com/en-us/azure/iot-operations/connect-to-cloud/howto-configure-mqtt-bridge)
+- [Informatica](https://docs.informatica.com/integration-cloud/cloud-mass-ingestion/current-version/mass-ingestion-streaming/mass-ingestion-streaming/mass-ingestion-streaming-sources/mqtt-sources.html)
+- [Lenses Kafka MQTT Source Connector](https://docs.lenses.io/5.5/connectors/sources/mqttsourceconnector/)
+- [Open Automation Software](https://openautomationsoftware.com/products/communications/mqtt-connector/)
+- [Salesforce/Mulesoft](https://docs.mulesoft.com/mqtt3-connector/latest/)
+- [SAP ABAP](https://help.sap.com/docs/ABAP_PLATFORM_NEW/05d041d3df1a4595a3c45f57c15e2325/e6dc0df73a62417eb8f09deb270bb34e.html)
+- [ThingsBoard](https://thingsboard.io/docs/iot-gateway/config/mqtt/)
+
+### Connectors with Known Issues
+
+#### [Kafka Connect](https://docs.confluent.io/kafka-connectors/mqtt/current/mqtt-sink-connector/overview.html#connection-validation-and-client-ids)
+
+> The MQTT Sink connector validates connection using a randomly generated client ID. This validation method is fine in most cases, however, issues may arise if the MQTT broker rejects clients based on client IDs.
+
+The Link Labs MQTT Broker requires static client id configuration as a part of the client authentication. An open-source alternative would be [Lenses Kafka MQTT Source Connector](https://docs.lenses.io/5.5/connectors/sources/mqttsourceconnector/)
 
 ## Getting MQTT Credentials
 
