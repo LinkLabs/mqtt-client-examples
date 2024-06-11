@@ -6,6 +6,7 @@ Status: Issue Identified, PR requested.
 
 ### Related Tickets
 
+- https://github.com/mqttjs/MQTT.js/issues/1886
 - https://github.com/mqttjs/MQTT.js/issues/1510
 
 ### Expeted MQTT Behavior
@@ -37,7 +38,7 @@ https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901178
 
 ### Expected MQTT.js Library Client Behavior
 
-When the MQTT Broker issues a [Reason Code](https://github.com/mqttjs/MQTT.js/blob/main/src/lib/handlers/ack.ts#L5) greater or equal to 0x128, it is an error and should be identified as such.
+When the MQTT Broker issues a [Reason Code](https://github.com/mqttjs/MQTT.js/blob/main/src/lib/handlers/ack.ts#L5) greater or equal to 0x80 / 128, it is an error and should be identified as such.
 
 The subscribe method has the following signature: 
 
@@ -53,11 +54,11 @@ and accepts a callback function to handle the results of the subscription reques
 
 ### Actual Behavior
 
-When the MQTT Client fails to subscribe to a topic (retrieves a Return Code > 0x128):
+When the MQTT Client fails to subscribe to a topic (retrieves a Return Code > 0x80 / 128):
 - the `err` attribute is not set (`null`)
 - the [Error Event](https://github.com/mqttjs/MQTT.js?tab=readme-ov-file#event-error) is not triggered.
 
-Instead, the suback return code is always assumed to be successful and is returned as the QoS, which is valid for return code 0x00, 0x01, 0x02, but is not valid for return code greater than 0x128.
+Instead, the suback return code is always assumed to be successful and is returned as the QoS, which is valid for return code 0x00, 0x01, 0x02, but is not valid for return code greater than 0x80 / 128.
 
 For example, if an MQTT client requests to subscribe to a topic they do not have access to, the MQTT broker will respond with an error code '135': 'Not authorized'.
 
