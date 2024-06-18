@@ -46,7 +46,7 @@ client.on("connect", () => {
       granted.forEach(granted_sub => {
         console.log("Subscribed to topic", granted_sub.topic, "using a QoS of", granted_sub.qos,"!");
         console.log()
-      })
+      });
     }
   });
 });
