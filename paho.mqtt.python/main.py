@@ -8,18 +8,19 @@ from typing import Optional
 
 @dataclass
 class MQTTCredentials:
-    clientId: str
     host: str
-    organizationId: str
-    password: str
     port: str
+    clientId: str
+    username: str
+    password: str
+    topic: str
+    # Non required Attributes
+    organizationId: str
     protocol: str
     subscribeAcl: str
     publishAcl: Optional[str]
     subscriptionDate: str
-    topic: str
     userId: int
-    username: str
     isEnabled: int
     subscriptionType: str
 
