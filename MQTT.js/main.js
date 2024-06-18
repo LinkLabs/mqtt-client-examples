@@ -38,14 +38,15 @@ client = mqtt.connect({
 });
 
 client.on("connect", () => {
-  client.subscribe(creds.topic, {qos: 1}, (err, granted) => {
+  client.subscribe([creds.topic], {qos: 1}, (err, granted) => {
     if (err) {
-      console.log("Error subscribing to topic: ", err);
+      console.error(err);
       client.end()
     } else {
-      granted_sub = granted[0]
-      console.log("Subscribed to topic", granted_sub.topic, "using a QoS of", granted_sub.qos,"!");
-      console.log()
+      granted.forEach(granted_sub => {
+        console.log("Subscribed to topic", granted_sub.topic, "using a QoS of", granted_sub.qos,"!");
+        console.log()
+      })
     }
   });
 });
