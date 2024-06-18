@@ -62,7 +62,7 @@ client.on("message", (topic, message) => {
 });
 
 client.on('error', function(err){
-    console.log("ERROR: ", err)
+    console.error(err)
     client.end()
 })
 
