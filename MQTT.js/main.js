@@ -1,14 +1,15 @@
 class MQTTCredentials {
-  clientId = "";
   host = "";
-  organizationId = "";
-  password = "";
   port = 8883;
-  protocol = "";
-  subscriptionDate = "";
-  topic = "";
-  userId = 0;
   username = "";
+  password = "";
+  clientId = "";
+  topic = "";
+  // Non required attributes
+  protocol = "";
+  organizationId = "";
+  subscriptionDate = "";
+  userId = 0;
   isEnabled = 0;
   subscriptionType = "";
 }
