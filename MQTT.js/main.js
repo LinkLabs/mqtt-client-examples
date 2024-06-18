@@ -39,20 +39,13 @@ client = mqtt.connect({
 
 client.on("connect", () => {
   client.subscribe(creds.topic, {qos: 1}, (err, granted) => {
-    if (err || granted.length < 1) {
+    if (err) {
       console.log("Error subscribing to topic: ", err);
-      console.log("Granted:" + granted)
       client.end()
     } else {
       granted_sub = granted[0]
-      // Check for unhandled errors: https://github.com/mqttjs/MQTT.js/issues/1886
-      if (granted_sub.qos > 0x80) {
-        console.log("Error subscribing to topic: ", mqtt.ReasonCodes[granted_sub.qos.toString()]);
-        client.end()
-      } else {
-        console.log("Subscribed to topic", granted_sub.topic, "using a QoS of", granted_sub.qos,"!");
-        console.log()
-      }
+      console.log("Subscribed to topic", granted_sub.topic, "using a QoS of", granted_sub.qos,"!");
+      console.log()
     }
   });
 });
