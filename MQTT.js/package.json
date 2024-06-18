@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "mqtt": "^5.6.1"
+    "mqtt": "^5.7.1"
   }
 }
