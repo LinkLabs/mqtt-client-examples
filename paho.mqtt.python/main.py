@@ -2,9 +2,13 @@
 
 from dataclasses import dataclass
 import json
+import logging
 import os
 from typing import Optional
 
+logging.basicConfig()
+LOG = logging.getLogger()
+LOG.setLevel(logging.DEBUG)
 
 @dataclass
 class MQTTCredentials:
@@ -31,33 +35,33 @@ def load_creds() -> MQTTCredentials:
 
 
 creds = load_creds()
-print(f"Using {creds}")
+LOG.info(f"Using {creds}")
 
 
 import paho.mqtt.client as mqtt
 
 
 def on_connect(mqttc, userdata, flags, rc, properties=None):
-    print("rc: " + rc.getName())
+    LOG.debug("Connect Return Code: " + rc.getName())
 
 
 def on_message(mqttc, obj, msg):
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
-
+    LOG.info(f"{msg.topic} -> {json.dumps(json.loads(msg.payload), sort_keys=True, indent=4)}")
 
 def on_subscribe(mqttc, userdata, mid, reason_codes, properties):
-    print(f"Subscribed: {str(mid)} {[code.getName() for code in reason_codes]}")
+    LOG.info(f"Subscribed: {str(mid)} {[code.getName() for code in reason_codes]}")
 
 
 def on_log(mqttc, obj, level, string):
-    print(string)
+    LOG.debug(string)
 
 
-def on_disconnect(client, userdata, rc):
+def on_disconnect(client, userdata, rc, properties):
     if rc != 0:
         print()
-        client.on_log(userdata, "error", f"{rc}", f"Unexpected DISCONNECT: {mqtt.error_string(rc)}")
-
+        LOG.error(userdata, "error", f"{rc}", f"Unexpected DISCONNECT: {mqtt.error_string(rc)}")
+    else:
+        LOG.info(f"Disconnected: {mqtt.error_string(rc)}")
 
 # Create MQTT Client Instance
 mqttc = mqtt.Client(client_id=creds.clientId, protocol=mqtt.MQTTv5)
@@ -75,5 +79,9 @@ mqttc.on_log = on_log
 # Establish MQTT Connection and run application loop
 mqttc.connect(host=creds.host, port=int(creds.port), keepalive=60)
 ret = mqttc.subscribe(creds.topic, qos=1)
-mqttc.loop_forever()
+try:
+    mqttc.loop_forever()
+except KeyboardInterrupt:
+    LOG.info("Disconnecting from client...")
+    mqttc.disconnect()
 
