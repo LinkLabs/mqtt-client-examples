@@ -6,9 +6,11 @@ import logging
 import os
 from typing import Optional
 
+
 logging.basicConfig()
 LOG = logging.getLogger()
 LOG.setLevel(logging.DEBUG)
+
 
 @dataclass
 class MQTTCredentials:
@@ -41,8 +43,8 @@ LOG.info(f"Using {creds}")
 import paho.mqtt.client as mqtt
 
 
-def on_connect(mqttc, userdata, flags, rc, properties=None):
-    LOG.debug("Connect Return Code: " + rc.getName())
+def on_connect(mqttc, obj, flags, reason_code, properties=None):
+    LOG.debug("Connect Return Code: " + reason_code.getName())
 
 
 def on_message(mqttc, obj, msg):
@@ -56,12 +58,11 @@ def on_log(mqttc, obj, level, string):
     LOG.debug(string)
 
 
-def on_disconnect(client, userdata, rc, properties):
-    if rc != 0:
-        print()
-        LOG.error(userdata, "error", f"{rc}", f"Unexpected DISCONNECT: {mqtt.error_string(rc)}")
+def on_disconnect(mqttc, obj, flags, reason_code, properties=None):
+    if flags != 0:
+        LOG.error(f"Unexpected DISCONNECT: {mqtt.error_string(flags)} | {reason_code}")
     else:
-        LOG.info(f"Disconnected: {mqtt.error_string(rc)}")
+        LOG.info(f"Disconnected Successfully: {mqtt.error_string(flags)}")
 
 # Create MQTT Client Instance
 mqttc = mqtt.Client(client_id=creds.clientId, protocol=mqtt.MQTTv5)
